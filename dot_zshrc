@@ -45,6 +45,9 @@ ZSH_THEME="spaceship"
 #ENABLE_CORRECTION="true"
 #export SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r$reset_color? [ynae] "
 
+unsetopt correct_all
+unsetopt correct
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
