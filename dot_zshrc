@@ -42,7 +42,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 export SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r$reset_color? [ynae] "
 
 # Uncomment the following line to display red dots whilst waiting for completion.
