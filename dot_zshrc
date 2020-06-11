@@ -129,7 +129,7 @@ function reload_gtk_theme() {
   sleep 1
   gsettings set org.gnome.desktop.interface gtk-theme $theme
 }
-
+ 
 
 # Set path
 path+=('/home/raphael/.cargo/bin')
