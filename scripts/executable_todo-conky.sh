@@ -23,8 +23,8 @@ while getopts rbo:p: OPT; do
 
 		DONE=$(todo.sh ${ARGS[@]} lf done.txt $TODAY | head -n -2)
 		EMAILS=$(todo.sh ${ARGS[@]} ls @Emails | head -n -2)
-		SCHOOL=$(todo.sh ${ARGS[@]} ls @school | head -n -2)
-		OTHER=$(todo.sh ${ARGS[@]} ls -@Emails -@school | head -n -2)
+		DEVELOPMENT=$(todo.sh ${ARGS[@]} ls @Development | head -n -2)
+		OTHER=$(todo.sh ${ARGS[@]} ls -@Emails -@Development | head -n -2)
 
 		[[ -n "$PADDING" ]] && {
 			    LINES=0
@@ -32,9 +32,9 @@ while getopts rbo:p: OPT; do
 		        [[ -n "$DONE" ]] && LINES=$(($LINES + $(echo "$DONE" | wc -l) + 1))
 			    [[ -n "$DONE" ]] && [[ -n "$EMAILS" ]] && LINES=$(($LINES + 1))
 			        [[ -n "$EMAILS" ]] && LINES=$(($LINES + $(echo "$EMAILS" | wc -l) + 1))
-				    [[ -n "$EMAILS" ]] && [[ -n "$SCHOOL" ]] && LINES=$(($LINES + 1))
-				        [[ -n "$SCHOOL" ]] && LINES=$(($LINES + $(echo "$SCHOOL" | wc -l) + 1))
-					    [[ -n "$SCHOOL" ]] && [[ -n "$OTHER" ]] && LINES=$(($LINES + 1))
+				    [[ -n "$EMAILS" ]] && [[ -n "$DEVELOPMENT" ]] && LINES=$(($LINES + 1))
+				        [[ -n "$DEVELOPMENT" ]] && LINES=$(($LINES + $(echo "$DEVELOPMENT" | wc -l) + 1))
+					    [[ -n "$DEVELOPMENT" ]] && [[ -n "$OTHER" ]] && LINES=$(($LINES + 1))
 					        [[ -n "$OTHER" ]] && LINES=$(($LINES + $(echo "$OTHER" | wc -l) + 1))
 						    LINES=$(($PADDING - $LINES))
 					    }
@@ -44,17 +44,17 @@ while getopts rbo:p: OPT; do
 				        [[ -n "$DONE" ]] && {
 						        echo "${HEADER_START}${ALIGN}Done today${HEADER_END}"
 					        echo "$DONE" | sed -e "s:[0-9]* x $TODAY ::" -e "$ALNRX"
-						        [[ -n "$EMAILS$SCHOOL$OTHER" ]] && echo '${color}'
+						        [[ -n "$EMAILS$DEVELOPMENT$OTHER" ]] && echo '${color}'
 							    }
 					    }
 				    [[ -n "$EMAILS" ]] && {
 					        echo "${HEADER_START}${ALIGN}Emails${HEADER_END}"
-				        echo "$EMAILS" | sed -r -e 's: @work::gI' -e "s/$MATCH/$SWITCH/" -e "$ALNRX"
-					    [[ -n "$SCHOOL$OTHER" ]] && echo '${color}'
+				        echo "$EMAILS" | sed -r -e 's: @Emails::gI' -e "s/$MATCH/$SWITCH/" -e "$ALNRX"
+					    [[ -n "$DEVELOPMENT$OTHER" ]] && echo '${color}'
 				    }
-			    [[ -n "$SCHOOL" ]] && {
-				        echo "$HEADER_START$ALIGN-= School =-$HEADER_END"
-			        echo "$SCHOOL" | sed -r -e 's: @school::gI' -e "s/$MATCH/$SWITCH/" -e "$ALNRX"
+			    [[ -n "$DEVELOPMENT" ]] && {
+				        echo "${HEADER_START}${ALIGN}Development${HEADER_END}"
+			        echo "$DEVELOPMENT" | sed -r -e 's: @Development::gI' -e "s/$MATCH/$SWITCH/" -e "$ALNRX"
 				    [[ -n "$OTHER" ]] && echo '${color}'
 			    }
 		    [[ -n "$OTHER" ]] && {
