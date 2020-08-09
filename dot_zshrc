@@ -133,6 +133,7 @@ function reload_gtk_theme() {
 
 # Set path
 path+=('/home/raphael/.cargo/bin')
+path+=('/home/raphael/.gem/ruby/2.7.0/bin')
 export PATH
 
 # Set LANG (for xfce4-terminal to switch to UTF8, hopefully)
